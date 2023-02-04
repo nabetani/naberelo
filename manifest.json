@@ -6,18 +6,12 @@
     "author": "nabetan@gmail.com",
     "homepage_url": "https://github.com/nabereloader",
     "version_name": "first release",
-    "content_scripts": [
-        {
-            "matches": [
-                "http://*/*",
-                "https://*/*"
-            ],
-            "css": [
-                "impl/scripts.css"
-            ],
-            "js": [
-                "impl/scripts.js"
-            ]
-        }
-    ]
+    "permissions": [
+        "activeTab",
+        "scripting"
+    ],
+    "action": {
+        "default_popup": "impl/popup.html",
+        "default_icon": "impl/icon.png"
+    }
 }
