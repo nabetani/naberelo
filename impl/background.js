@@ -1,16 +1,19 @@
 console.log("hoge");
-var reloader = {};
+let timerIds = {};
 
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
-        console.log([reloader, request]);
+        if ("enable" != request.cmd && "disable" != request.cmd) {
+            return;
+        }
+        const tabid = request.tab.id;
+        const timerId = timerIds[tabid];
         switch (request.cmd) {
             case "enable":
-                var tabid = request.tab.id;
-                if (reloader.timerId) {
-                    clearInterval(reloader.timerId);
+                if (timerId) {
+                    clearInterval(timerId);
                 }
-                reloader.timerId = setInterval(
+                timerIds[tabid] = setInterval(
                     () => {
                         console.log("reload!");
                         chrome.tabs.reload(tabid);
@@ -19,10 +22,10 @@ chrome.runtime.onMessage.addListener(
                 console.log(request.tab);
                 break;
             case "disable":
-                if (reloader.timerId) {
-                    clearInterval(reloader.timerId);
+                if (timerId) {
+                    clearInterval(timerId);
+                    timerIds[tabid] = null;
                 }
-                reloader.timerId = null;
                 break;
         }
     }
