@@ -1,4 +1,4 @@
-console.log("hoge");
+console.log("background task started.");
 let timerIds = {};
 
 chrome.runtime.onMessage.addListener(
