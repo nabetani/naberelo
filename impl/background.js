@@ -7,21 +7,22 @@ chrome.runtime.onMessage.addListener(
             return;
         }
         ((tabId, cmd, intervalMS) => {
-            const timerId = () => { timerIds[tabId] };
+            const timerId = () => { return timerIds[tabId] };
             const disable = () => {
                 if (timerId()) {
+                    console.log("disable interval timer for ", tabId,);
                     clearInterval(timerId());
-                    console.log(timerIds);
                     timerIds[tabId] = null;
-                    console.log(timerIds);
                 }
             };
             const reload = () => {
                 chrome.tabs.reload(tabId, { bypassCache: true }, () => {
                     const e = chrome.runtime.lastError;
                     if (e) {
-                        console.log(e);
+                        console.log("failed to reload tab ", tabId, ": ", e, " @ ", (new Date()).toJSON());
                         disable();
+                    } else {
+                        console.log("reloaded tab ", tabId, ": ", e, " @ ", (new Date()).toJSON());
                     }
                 });
             };
