@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "name": "Nabe Reloader",
+    "version": "1.0.0",
+    "description": "Nabe Reloader",
+    "author": "nabetan@gmail.com",
+    "homepage_url": "https://github.com/nabereloader",
+    "version_name": "first release",
+    "permissions": [
+        "activeTab",
+        "scripting",
+        "storage"
+    ],
+    "icons": {
+        "16": "impl/icon16.png",
+        "32": "impl/icon32.png",
+        "64": "impl/icon64.png",
+        "128": "impl/icon128.png",
+        "512": "impl/icon.png"
+    },
+    "action": {
+        "default_popup": "impl/popup.html",
+        "default_icon": "impl/icon.png"
+    },
+    "background": {
+        "service_worker": "impl/background.js"
+    }
+}
