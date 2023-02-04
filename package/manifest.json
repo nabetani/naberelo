@@ -3,8 +3,8 @@
     "name": "Nabe Reloader",
     "version": "1.0.0",
     "description": "Nabe Reloader",
-    "author": "nabetan@gmail.com",
-    "homepage_url": "https://github.com/nabereloader",
+    "author": "nabetani.takenori@gmail.com",
+    "homepage_url": "https://github.com/nabetani/naberelo",
     "version_name": "first release",
     "permissions": [
         "activeTab",
