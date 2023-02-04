@@ -8,8 +8,7 @@
     "version_name": "first release",
     "permissions": [
         "activeTab",
-        "scripting",
-        "storage"
+        "scripting"
     ],
     "action": {
         "default_popup": "impl/popup.html",
