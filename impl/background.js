@@ -6,27 +6,37 @@ chrome.runtime.onMessage.addListener(
         if ("enable" != request.cmd && "disable" != request.cmd) {
             return;
         }
-        const tabid = request.tab.id;
-        const timerId = timerIds[tabid];
-        switch (request.cmd) {
-            case "enable":
-                if (timerId) {
-                    clearInterval(timerId);
+        ((tabId, cmd, intervalMS) => {
+            const timerId = () => { timerIds[tabId] };
+            const disable = () => {
+                if (timerId()) {
+                    clearInterval(timerId());
+                    console.log(timerIds);
+                    timerIds[tabId] = null;
+                    console.log(timerIds);
                 }
-                timerIds[tabid] = setInterval(
-                    () => {
-                        console.log("reload!");
-                        chrome.tabs.reload(tabid);
-                    },
-                    request.intervalMS);
-                console.log(request.tab);
-                break;
-            case "disable":
-                if (timerId) {
-                    clearInterval(timerId);
-                    timerIds[tabid] = null;
-                }
-                break;
-        }
+            };
+            const reload = () => {
+                chrome.tabs.reload(tabId, { bypassCache: true }, () => {
+                    const e = chrome.runtime.lastError;
+                    if (e) {
+                        console.log(e);
+                        disable();
+                    }
+                });
+            };
+            const enable = () => {
+                disable();
+                timerIds[tabId] = setInterval(reload, intervalMS);
+            };
+            switch (cmd) {
+                case "enable":
+                    enable();
+                    break;
+                case "disable":
+                    disable();
+                    break;
+            }
+        })(request.tab.id, request.cmd, request.intervalMS);
     }
 );

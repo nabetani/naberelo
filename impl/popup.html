@@ -1,7 +1,27 @@
 <!DOCTYPE html>
 <html>
 
-<body style="width:10em;">
+<head>
+    <style>
+        body {
+            width: 20em;
+        }
+
+        input[type="text"] {
+            width: 5em;
+        }
+    </style>
+</head>
+
+<body>
+    <label for="num">interval: </label>
+    <input type="text" id="num" value="1" />
+    <select id="unit">
+        <option value="1e3">seconds</option>
+        <option value="60000">minutes</option>
+        <option value="36e5" selected="selected">hours</option>
+    </select>
+    <hr noshade />
     <button id="enable">Enable</button>
     <button id="disable">Disable</button>
     <script src="./popup.js"></script>
