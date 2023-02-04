@@ -8,10 +8,14 @@
     "version_name": "first release",
     "permissions": [
         "activeTab",
-        "scripting"
+        "scripting",
+        "storage"
     ],
     "action": {
         "default_popup": "impl/popup.html",
         "default_icon": "impl/icon.png"
+    },
+    "background": {
+        "service_worker": "impl/background.js"
     }
 }
