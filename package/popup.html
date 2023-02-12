@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            width: 30em;
+            font-size: 11pt;
+        }
+
+        input[type="text"] {
+            width: 5em;
+        }
+
+        .list-wrapper {
+            margin: 0;
+            padding: 0;
+        }
+
+        #tabs {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .tab-title {
+            font-size: small;
+        }
+
+        #inputs {
+            float: left;
+        }
+
+        #buttons {
+            text-align: right;
+        }
+
+        .visible {
+            display: block;
+        }
+
+        .invisible {
+            display: none;
+        }
+
+        #no-tab {
+            margin-left: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="upper">
+        <div id="inputs">
+            <label for="num">interval: </label>
+            <input type="text" id="num" value="1" />
+            <select id="unit">
+                <option value="1e3">seconds</option>
+                <option value="60000">minutes</option>
+                <option value="36e5" selected="selected">hours</option>
+            </select>
+        </div>
+        <div id="buttons">
+            <button id="enable" class="right">Enable</button>
+            <button id="disable" class="right">Disable</button>
+        </div>
+    </div>
+    <hr noshade />
+
+    <div>Nabe Reloader reloads following tabs:</div>
+    <div>
+        <div id="no-tab">none</div>
+        <ul id="tabs"></ul>
+    </div>
+    <script src="./popup.js"></script>
+</body>
+
+</html>
