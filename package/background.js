@@ -34,7 +34,7 @@ chrome.runtime.onMessage.addListener(
                             console.log("failed to reload tab ", tabId, ": ", e, " @ ", (new Date()).toJSON());
                             disable();
                         } else {
-                            console.log("reloaded tab ", tabId, ": ", e, " @ ", (new Date()).toJSON());
+                            console.log("reloaded tab ", tabId, ": @ ", (new Date()).toJSON());
                         }
                     });
                 };
@@ -53,7 +53,7 @@ chrome.runtime.onMessage.addListener(
             })(request.tab.id, request.cmd, request.intervalMS);
         }
         prepareRes().then((o) => {
-            console.log("send ", o);
+            console.log("sendResponse", o);
             sendResponse(o);
         });
         return true;
