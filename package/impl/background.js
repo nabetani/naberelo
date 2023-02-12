@@ -12,7 +12,6 @@ async function prepareRes() {
             tabs.push(tab.title);
         }
     }
-    console.log("tabs is", tabs);
     return { tabs: tabs };
 }
 
@@ -53,6 +52,10 @@ chrome.runtime.onMessage.addListener(
                 }
             })(request.tab.id, request.cmd, request.intervalMS);
         }
-        prepareRes().then((o) => { sendResponse(o); });
+        prepareRes().then((o) => {
+            console.log("send ", o);
+            sendResponse(o);
+        });
+        return true;
     }
 );
