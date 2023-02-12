@@ -8,7 +8,6 @@
     "version_name": "first release",
     "permissions": [
         "activeTab",
-        "scripting",
         "storage"
     ],
     "icons": {
