@@ -1,3 +1,5 @@
+"use strict";
+
 console.log("background task started.");
 let timerIds = {};
 

@@ -1,3 +1,6 @@
+
+"use strict";
+
 const regEvent = async (cmd, f) => {
   const val = (id) => {
     return parseFloat(document.getElementById(id).value);
